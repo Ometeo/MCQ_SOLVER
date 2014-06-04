@@ -86,8 +86,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="gridDetect.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Trash.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="gridDetect.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

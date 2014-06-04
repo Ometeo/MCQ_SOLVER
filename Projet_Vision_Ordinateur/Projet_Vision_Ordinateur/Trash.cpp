@@ -32,7 +32,7 @@
 //int EndingLineOnThisOne(cv::Point p1, cv::Point p2, std::vector<cv::Vec4i> lines);
 //bool belongSameLine(cv::Vec4i l1, cv::Vec4i l2);
 //cv::Vec4i fuuuuuusion(cv::Vec4i l1, cv::Vec4i l2);
-//void selectGrid(std::vector<cv::Vec4i> lines);
+//void selectGrid(cv::Mat image, std::vector<cv::Vec4i> lines);
 //void detectLines();
 //std::vector<cv::Vec4i> affineLines(std::vector<cv::Vec4i> lines);
 //float distanceBetweenPoints(cv::Point p1, cv::Point p2);
@@ -40,40 +40,43 @@
 //int main(int argc, char** argv)
 //{
 //	const char* filename = argc >= 2 ? argv[1] : "000.jpg";
-//	image = cv::imread(filename);
+//	cv::Mat plop1 = cv::imread(filename);
+//	cv::cvtColor(plop1, image, cv::COLOR_BGR2GRAY);
 //	if(image.empty())
 //	{
 //		std::cout << "can not open " << filename << std::endl;
 //		return -1;
 //	}
 //
-//	cv::cvtColor(image, img, cv::COLOR_BGR2GRAY);
+//	cv::Size size(3, 3);
+//	cv::GaussianBlur(image, image, size, 0);
 //	int threshold = 50;
-//	cv::adaptiveThreshold(img, render, 255, cv::ADAPTIVE_THRESH_GAUSSIAN_C, cv::THRESH_BINARY_INV, 11, 2);
+//	cv::adaptiveThreshold(image, image, 255, CV_ADAPTIVE_THRESH_MEAN_C, CV_THRESH_BINARY_INV, 25, 7);
 //	//cv::Canny(img, render, threshold, threshold * 3, 3);
 //
-//	HoughLinesP(render, lines2, 1, CV_PI / 180, 50, 30, 10);
+//	HoughLinesP(image, lines2, 1, CV_PI / 180, 50, 30, 10);
 //	for(size_t i = 0; i < lines2.size() && i < 200; i++)
 //	{
 //		cv::Vec4i l = lines2[i];
 //		//cv::line(image, cv::Point(l[0], l[1]), cv::Point(l[2], l[3]), cv::Scalar(0, 0, 255), 1);
 //	}
 //
-//	std::vector<cv::Vec4i> plop = affineLines(lines2);
+//	//std::vector<cv::Vec4i> plop = affineLines(lines2);
+//	std::vector<cv::Vec4i> plop = lines2;
 //
-//
+//	cv::cvtColor(image, render, cv::COLOR_GRAY2BGR);
 //
 //	for(size_t i = 0; i < plop.size() && i < 200; i++)
 //	{
 //		cv::Vec4i l = plop[i];
-//		cv::line(image, cv::Point(l[0], l[1]), cv::Point(l[2], l[3]), cv::Scalar(255, 0, 0), 1);
+//		cv::line(plop1, cv::Point(l[0], l[1]), cv::Point(l[2], l[3]), cv::Scalar(255, 0, 0), 1);
 //	}
-//	selectGrid(plop);
+//	selectGrid(plop1, plop);
 //
 //	cv::namedWindow("Display window", cv::WINDOW_AUTOSIZE);
 //	//cv::setMouseCallback("Display window", CallBackFunc, NULL);
 //	//draw();
-//	cv::imshow("Display window", image);
+//	cv::imshow("Display window", plop1);
 //
 //	cv::waitKey(0);
 //	return 0;
@@ -106,7 +109,7 @@
 //	return count++;
 //}
 //
-//void selectGrid(std::vector<cv::Vec4i> lines)
+//void selectGrid(cv::Mat image, std::vector<cv::Vec4i> lines)
 //{
 //
 //	std::vector<int> countPerLine;
