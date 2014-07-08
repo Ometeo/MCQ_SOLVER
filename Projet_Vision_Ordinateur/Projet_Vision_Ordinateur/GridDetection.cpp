@@ -34,11 +34,6 @@ void cornersDetection(cv::Mat img, std::vector<cv::Point> points, std::vector<cv
 		corners.push_back(cv::Point2f(0, img.size().height));
 		corners.push_back(cv::Point2f(0, 0));
 		corners.push_back(cv::Point2f(img.size().width, 0));
-		
-		//corners.push_back(cv::Point2f(img.size().width, 0));
-		//corners.push_back(cv::Point2f(0, 0));
-		//corners.push_back(cv::Point2f(0, img.size().height));
-		//corners.push_back(cv::Point2f(0, 0));
 
 		for(int i = 0; i < points.size(); i++)
 		{
@@ -49,18 +44,6 @@ void cornersDetection(cv::Mat img, std::vector<cv::Point> points, std::vector<cv
 
 void cornerDetection(cv::Point pt, std::vector<cv::Point2f> &corners)
 {
-	//if(pt.y > corners[0].y)
-	//	corners[0] = pt;
-
-	//if(pt.y < corners[1].y)
-	//	corners[1] = pt;
-
-	//if(pt.x > corners[2].x)
-	//	corners[2] = pt;
-
-	//if(pt.x < corners[3].x)
-	//	corners[3] = pt;
-
 	if(pt.y < corners[0].y && pt.x < corners[0].x)
 		corners[0] = pt;
 
@@ -178,7 +161,7 @@ void rotateImage(std::vector<cv::Point2f> &corners)
 	corners.push_back(temp[2]);
 }
 
-std::vector<std::vector<cv::Point>> findCountour(cv::Mat image, std::vector<cv::Vec4i> &hierarchy)
+std::vector<std::vector<cv::Point>> findContour(cv::Mat image, std::vector<cv::Vec4i> &hierarchy)
 {
 	cv::adaptiveThreshold(image, image, 200, CV_ADAPTIVE_THRESH_MEAN_C, CV_THRESH_BINARY_INV, 25, 4);
 

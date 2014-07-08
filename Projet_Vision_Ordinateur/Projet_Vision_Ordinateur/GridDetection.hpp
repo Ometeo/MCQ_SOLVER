@@ -21,7 +21,7 @@ bool goodOrientation(cv::Mat img);
 void rotateImage(std::vector<cv::Point2f> &corners);
 
 
-std::vector<std::vector<cv::Point>> findCountour(cv::Mat image, std::vector<cv::Vec4i> &hierarchy);
+std::vector<std::vector<cv::Point>> findContour(cv::Mat image, std::vector<cv::Vec4i> &hierarchy);
 
 
 cv::Mat straightenGrid(std::vector<cv::Point2f> corners, cv::Mat imgToStraighten);

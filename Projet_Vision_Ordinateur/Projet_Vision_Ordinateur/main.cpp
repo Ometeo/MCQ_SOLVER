@@ -48,7 +48,7 @@ void on_correctMCQForImage(int, void*)
 	cv::cvtColor(modified, image, cv::COLOR_BGR2GRAY);
 
 	std::vector<cv::Vec4i> hierarchy;
-	std::vector<std::vector<cv::Point>> contours_poly = findCountour(image, hierarchy);
+	std::vector<std::vector<cv::Point>> contours_poly = findContour(image, hierarchy);
 
 	cv::Mat drawing = cv::Mat::zeros(image.size(), CV_8UC3);
 	cv::Scalar color = cv::Scalar(0, 255, 0);
